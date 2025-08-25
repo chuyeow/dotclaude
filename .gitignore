@@ -2,6 +2,7 @@
 .claude/cache/
 .claude/logs/
 .claude/tmp/
+.claude/hooks/logs/
 
 # OS generated files
 .DS_Store
