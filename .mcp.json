@@ -16,7 +16,7 @@
       "type": "http",
       "url": "https://mcp.zapier.com/api/mcp/mcp",
       "headers": {
-        "Authorization": "Bearer get-this-from-zapier at https://mcp.zapier.com/mcp"
+        "Authorization": "Bearer ${ZAPIER_API_KEY}"
       }
     },
     "cloudflare-browser-rendering": {
@@ -28,6 +28,7 @@
       "url": "https://containers.mcp.cloudflare.com/sse"
     },
     "zen": {
+      "type": "stdio",
       "command": "sh",
       "args": [
         "-c",
@@ -35,7 +36,7 @@
       ],
       "env": {
         "PATH": "/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:~/.local/bin",
-        "OPENROUTER_API_KEY": "get-this-from-openrouter at https://openrouter.ai/api-keys"
+        "OPENROUTER_API_KEY": "${OPENROUTER_API_KEY}"
       }
     }
   }

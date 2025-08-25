@@ -1,4 +1,4 @@
-#!/usr/bin/env -S uv run python
+#!/usr/bin/env python3
 
 import json
 import sys
@@ -10,6 +10,8 @@ from pathlib import Path
 SENSITIVE_KEYS = {
     "api_key", "token", "password", "secret", "authorization",
     "cookie", "session", "access_token", "refresh_token",
+    "key", "auth", "bearer", "oauth", "jwt", "private_key",
+    "client_secret", "client_id", "webhook_secret", "signing_secret"
 }
 
 def redact_sensitive(value):
@@ -28,7 +30,12 @@ def log_hook(hook_data):
     # Ensure logs directory exists.
     project_dir = os.environ.get('CLAUDE_PROJECT_DIR', '.')
     log_dir = Path(project_dir) / '.claude' / 'hooks' / 'logs'
-    log_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        log_dir.mkdir(parents=True, exist_ok=True)
+    except OSError as e:
+        print(f"HOOK ERROR: Failed to create logs directory: {e}", file=sys.stderr)
+        return
+    
     log_file = log_dir / 'hooks-log.jsonl'
 
     with open(log_file, 'a', encoding='utf-8') as f:

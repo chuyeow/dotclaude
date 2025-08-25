@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MCP Server Configuration",
+  "description": "Schema for validating MCP (Model Context Protocol) server configurations",
+  "type": "object",
+  "properties": {
+    "mcpServers": {
+      "type": "object",
+      "description": "Collection of MCP server configurations",
+      "patternProperties": {
+        "^[a-zA-Z0-9_-]+$": {
+          "type": "object",
+          "description": "Individual MCP server configuration",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["stdio", "sse", "http"],
+              "description": "Type of MCP server connection"
+            },
+            "command": {
+              "type": "string",
+              "description": "Command to execute for stdio servers"
+            },
+            "args": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Arguments for the command"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "description": "URL for SSE or HTTP servers"
+            },
+            "env": {
+              "type": "object",
+              "description": "Environment variables for the server",
+              "patternProperties": {
+                "^[A-Z_][A-Z0-9_]*$": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "headers": {
+              "type": "object",
+              "description": "HTTP headers for HTTP servers",
+              "patternProperties": {
+                "^[A-Za-z-]+$": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "required": ["type"],
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "type": {
+                    "const": "stdio"
+                  }
+                }
+              },
+              "then": {
+                "required": ["command"],
+                "properties": {
+                  "url": false
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "type": {
+                    "enum": ["sse", "http"]
+                  }
+                }
+              },
+              "then": {
+                "required": ["url"],
+                "properties": {
+                  "command": false,
+                  "args": false
+                }
+              }
+            }
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["mcpServers"],
+  "additionalProperties": false
+}
