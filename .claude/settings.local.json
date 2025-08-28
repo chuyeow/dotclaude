@@ -1,0 +1,10 @@
+{
+  "enabledMcpjsonServers": [
+    "playwright",
+    "context7",
+    "google-calendar-zapier",
+    "cloudflare-browser-rendering",
+    "cloudflare-container-sandbox",
+    "zen"
+  ]
+}
