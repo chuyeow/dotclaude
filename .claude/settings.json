@@ -3,5 +3,55 @@
   "statusLine": {
     "type": "command",
     "command": "input=$(cat); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir'); branch=$(cd \"$cwd\" 2>/dev/null && git branch --show-current 2>/dev/null); model=$(echo \"$input\" | jq -r '.model.display_name'); if [ -n \"$branch\" ]; then printf \"\\033[35m%s\\033[0m \\033[34m%s\\033[32m(%s)\\033[00m\" \"$model\" \"$cwd\" \"$branch\"; else printf \"\\033[35m%s\\033[0m \\033[34m%s\\033[00m\" \"$model\" \"$cwd\"; fi"
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write(**/*.md)",
+      "Edit",
+      "MultiEdit",
+      "Glob",
+      "Grep",
+      "WebSearch",
+      "WebFetch",
+      "Bash(git:*)",
+      "Bash(npm:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "TodoWrite"
+    ],
+    "ask": [
+      "Bash(rm:*)",
+      "Bash(rmdir:*)",
+      "Bash(sudo:*)",
+      "Bash(chmod:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(ssh:*)",
+      "Bash(docker:*)",
+      "Bash(killall:*)",
+      "Bash(pkill:*)"
+    ],
+    "deny": [
+      "Read(**/*.key)",
+      "Read(**/*.pem)",
+      "Read(**/*.p12)",
+      "Read(**/id_rsa*)",
+      "Read(**/id_ed25519*)",
+      "Read(**/.ssh/**)",
+      "Write(**/*.key)",
+      "Write(**/*.pem)"
+    ]
   }
 }
