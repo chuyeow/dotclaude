@@ -8,6 +8,14 @@
       ],
       "env": {}
     },
+    "chrome-devtools": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "chrome-devtools-mcp@latest"
+      ],
+      "env": {}
+    },
     "context7": {
       "type": "sse",
       "url": "https://mcp.context7.com/sse"
