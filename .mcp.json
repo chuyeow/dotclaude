@@ -1,13 +1,5 @@
 {
   "mcpServers": {
-    "playwright": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "@playwright/mcp@latest"
-      ],
-      "env": {}
-    },
     "chrome-devtools": {
       "type": "stdio",
       "command": "npx",
@@ -19,6 +11,13 @@
     "context7": {
       "type": "sse",
       "url": "https://mcp.context7.com/sse"
+    },
+    "private-journal": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "github:obra/private-journal-mcp"
+      ]
     },
     "google-calendar-zapier": {
       "type": "http",
@@ -34,17 +33,6 @@
     "cloudflare-container-sandbox": {
       "type": "sse",
       "url": "https://containers.mcp.cloudflare.com/sse"
-    },
-    "zen": {
-      "command": "sh",
-      "args": [
-        "-c",
-        "exec $(which uvx || echo uvx) --from git+https://github.com/BeehiveInnovations/zen-mcp-server.git zen-mcp-server"
-      ],
-      "env": {
-        "PATH": "/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:~/.local/bin",
-        "OPENROUTER_API_KEY": "get-this-from-openrouter at https://openrouter.ai/api-keys"
-      }
     }
   }
 }

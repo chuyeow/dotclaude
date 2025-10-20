@@ -5,6 +5,8 @@
     "google-calendar-zapier",
     "cloudflare-browser-rendering",
     "cloudflare-container-sandbox",
-    "zen"
+    "zen",
+    "chrome-devtools",
+    "private-journal"
   ]
 }
