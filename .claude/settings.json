@@ -76,5 +76,6 @@
       "Write(**/*.key)",
       "Write(**/*.pem)"
     ]
-  }
+  },
+  "cleanupPeriodDays": 99999
 }
